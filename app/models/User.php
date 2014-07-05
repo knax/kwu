@@ -25,12 +25,12 @@ class User extends Eloquent implements UserInterface {
 
 	public function createdSWO()
     {
-        return $this->hasMany('SWO');
+        return $this->hasMany('SWO', 'requester_id');
     }
 
    	public function createdMRF()
     {
-        return $this->hasMany('MRF');
+        return $this->hasMany('MRF', 'requester_id');
     }
 
     public function admin()

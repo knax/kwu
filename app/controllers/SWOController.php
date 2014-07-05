@@ -4,7 +4,7 @@ class SWOController extends BaseController {
 
 	public function showIndex()
 	{
-		$swo = SWO::where('requester_id', '=', Auth::id())->get();
+		$swo = Auth::user()->createdSWO;
 
 		$tableHeader = [
 		'No',
