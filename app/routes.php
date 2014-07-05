@@ -39,9 +39,5 @@ Route::group(['before' => 'authentication'], function()
 	Route::get('mrf', ['uses' => 'MRFController@showMRFList', 'as' => 'mrf']);
 });
 
-Route::get('test', function(){
-	return View::make('swo.details');
-});
-
 Route::get('login', ['uses' => 'AuthenticationController@showLoginForm', 'as' => 'login'])->before('logged_in');;
 Route::post('login', ['uses' => 'AuthenticationController@handleLoginData', 'as' => 'loginAction']);

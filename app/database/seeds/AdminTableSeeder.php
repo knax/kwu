@@ -6,11 +6,11 @@ class AdminTableSeeder extends Seeder {
 	{
 		Admin::create([
 			'type' => 'superadmin',
-			'users_id' => '1'
+			'user_id' => '1'
 		]);
 		Admin::create([
 			'type' => 'adm',
-			'users_id' => '2'
+			'user_id' => '2'
 		]);
 	}
 

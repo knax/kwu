@@ -12,6 +12,6 @@ class Admin extends \Eloquent {
     }
 
     public function isSuperAdmin() {
-    	return $this->type == 'superadmin'
+    	return $this->type == 'superadmin';
     }
 }

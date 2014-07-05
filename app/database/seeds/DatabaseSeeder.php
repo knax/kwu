@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('SWOTableSeeder');
 		$this->call('MRFListTableSeeder');
 		$this->call('SWOListTableSeeder');
+		$this->call('AdminTableSeeder');
 	}
 
 }
