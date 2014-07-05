@@ -13,7 +13,6 @@ class SWOTableSeeder extends Seeder {
 				'job_number' => '1',
 				'customer_client' => 'yes',
 				'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat libero, officiis asperiores error consectetur aspernatur corporis, accusantium veniam cumque pariatur commodi, suscipit aperiam laborum, soluta reprehenderit labore sed ipsa vitae?',
-				'approved' => false,
 				'requester_id' => $index,
 			]);
 			sleep(1);

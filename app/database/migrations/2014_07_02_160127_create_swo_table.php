@@ -21,7 +21,6 @@ class CreateSwoTable extends Migration {
 			$table->string('job_number');
 			$table->string('customer_client');
 			$table->text('note');
-			$table->boolean('approved');
 			$table->integer('approver_id')->unsigned()->nullable();
 			$table->integer('requester_id')->unsigned();
 			$table->foreign('approver_id')

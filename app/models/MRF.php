@@ -8,7 +8,7 @@ class MRF extends \Eloquent {
 
 	public function lists()
     {
-        return $this->hasMany('MRFList');
+        return $this->hasMany('MRFList', , 'mrf_id');
     }
 
     public function requester()
@@ -19,5 +19,9 @@ class MRF extends \Eloquent {
     public function approver()
     {
         return $this->belongTo('User', 'approver_id', 'id');
+    }
+
+    public function isApproved() {
+        return !is_null($this->approver);
     }
 }

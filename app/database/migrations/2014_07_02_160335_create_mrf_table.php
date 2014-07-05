@@ -21,7 +21,6 @@ class CreateMrfTable extends Migration {
 			$table->string('job_number');
 			$table->string('customer_client');
 			$table->text('note');
-			$table->boolean('approved');
 			$table->integer('approved_by')->unsigned()->nullable();
 			$table->integer('requester_id')->unsigned();
 			$table->foreign('approved_by')

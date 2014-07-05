@@ -14,15 +14,21 @@
 Route::filter('logged_in', function()
 {
 	if (Auth::check()) {
-		return Redirect::intended('homepage')
-			->with('notice', 'Anda sudah masuk');
+		return Redirect::route('homepage')
+		->with('notice', 'Anda sudah masuk');
 	}
 });
 
 Route::filter('authentication', function() {
 	if (Auth::guest())
 		return Redirect::intended('login')
-				->withErrors('Anda harus login terlebih dahulu');
+	->withErrors('Anda harus login terlebih dahulu');
+});
+
+Route::filter('checkAdmin', function() {
+	if (!Auth::user()->isAdmin())
+		return Redirect::route('homepage')
+	->withErrors('Anda tidak dapat mengakses halaman admin');
 });
 
 
@@ -37,6 +43,13 @@ Route::group(['before' => 'authentication'], function()
 	Route::get('swo/{id}', ['uses' => 'SWOController@showSWODetails', 'as' => 'swo.details'])->where('id', '[0-9]+');
 
 	Route::get('mrf', ['uses' => 'MRFController@showMRFList', 'as' => 'mrf']);
+
+	Route::group(['before' => 'checkAdmin'], function()
+	{
+		Route::get('admin/swo', ['uses' => 'AdminSWOController@showListNeedApproval', 'as' => 'admin.swo.index']);
+		Route::get('admin/swo/{id}', ['uses' => 'AdminSWOController@showSWODetails', 'as' => 'admin.swo.details'])->where('id', '[0-9]+');
+		Route::post('admin/swo/{id}', ['uses' => 'AdminSWOController@handleApproval', 'as' => 'admin.swo.approve'])->where('id', '[0-9]+');
+	});
 });
 
 Route::get('login', ['uses' => 'AuthenticationController@showLoginForm', 'as' => 'login'])->before('logged_in');;

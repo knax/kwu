@@ -20,4 +20,8 @@ class SWO extends \Eloquent {
     {
         return $this->belongTo('User', 'approver_id', 'id');
     }
+
+    public function isApproved() {
+        return !is_null($this->approver);
+    }
 }

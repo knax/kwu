@@ -29,6 +29,10 @@
 					@if (Auth::check())
 					{{ HTML::generateLi('swo','SWO') }}
 					{{ HTML::generateLi('mrf','MRF') }}
+					@if (Auth::user()->isAdmin())
+					{{ HTML::generateLi('admin/swo','Admin SWO') }}
+					{{ HTML::generateLi('admin/mrf','Admin MRF') }}
+					@endif
 					@endif
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

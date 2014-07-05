@@ -37,4 +37,8 @@ class User extends Eloquent implements UserInterface {
     {
         return $this->hasOne('Admin');
     }
+
+    public function isAdmin() {
+    	return !is_null($this->admin);
+    }
 }

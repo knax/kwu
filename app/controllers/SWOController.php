@@ -18,7 +18,7 @@ class SWOController extends BaseController {
 			$temp = [
 			$data->no,
 			$data->requester->full_name,
-			($data->approved) ? 'Ya' : 'Tidak'
+			($data->isApproved()) ? 'Ya' : 'Tidak'
 			];
 			$tableBody[$data->id] = $temp;
 		}

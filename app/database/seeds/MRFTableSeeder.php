@@ -12,7 +12,6 @@ class MRFTableSeeder extends Seeder {
 				'departement' => 'ADM',
 				'job_number' => '1',
 				'customer_client' => 'yes',
-				'approved' => false,
 				'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat libero, officiis asperiores error consectetur aspernatur corporis, accusantium veniam cumque pariatur commodi, suscipit aperiam laborum, soluta reprehenderit labore sed ipsa vitae?',
 				'requester_id' => $index,
 			]);
