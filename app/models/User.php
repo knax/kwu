@@ -32,4 +32,9 @@ class User extends Eloquent implements UserInterface {
     {
         return $this->hasMany('MRF');
     }
+
+    public function admin()
+    {
+        return $this->hasOne('Admin');
+    }
 }
