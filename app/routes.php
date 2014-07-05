@@ -31,7 +31,7 @@ Route::group(['before' => 'authentication'], function()
 	Route::get('logout', ['uses' => 'AuthenticationController@handleLogout', 'as' => 'login']);
 	Route::get('/', ['uses' => 'HomepageController@showHomepage', 'as' => 'homepage']);
 
-	Route::get('swo', ['uses' => 'SWOController@showIndex', 'as' => 'swo.index']);
+	Route::get('swo', ['uses' => 'SWOController@showSWOList', 'as' => 'swo.index']);
 	Route::get('swo/create', ['uses' => 'SWOController@showSWOForm', 'as' => 'swo.create']);
 	Route::post('swo/create', ['uses' => 'SWOController@handleSWOData', 'as' => 'swo.createAction']);
 	Route::get('swo/{id}', ['uses' => 'SWOController@showSWODetails', 'as' => 'swo.details'])->where('id', '[0-9]+');

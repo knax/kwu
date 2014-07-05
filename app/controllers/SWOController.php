@@ -2,7 +2,7 @@
 
 class SWOController extends BaseController {
 
-	public function showIndex()
+	public function showSWOList()
 	{
 		$swo = Auth::user()->createdSWO;
 
