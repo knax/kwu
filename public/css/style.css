@@ -1,0 +1,19 @@
+.container {
+	margin-top: 70px;
+}
+
+tbody#table-body > tr { cursor: pointer; }
+
+tr#signature > td {
+
+	height: 100px;
+}
+
+div#right-side {
+	border-left: 1px solid #eee;
+}
+
+div#insert-button-wrapper {
+	margin-right: auto;
+	margin-left: auto;
+}
