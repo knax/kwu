@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMrfTable extends Migration {
+class CreateDataTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateMrfTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('mrf', function(Blueprint $table)
+		Schema::create('data', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no');
@@ -21,9 +21,10 @@ class CreateMrfTable extends Migration {
 			$table->string('job_number');
 			$table->string('customer_client');
 			$table->text('note');
-			$table->integer('approved_by')->unsigned()->nullable();
+			$table->text('additional_data');
+			$table->integer('approver_id')->unsigned()->nullable();
 			$table->integer('requester_id')->unsigned();
-			$table->foreign('approved_by')
+			$table->foreign('approver_id')
 				  ->references('id')->on('users')
 				  ->onDelete('no action');
 			$table->foreign('requester_id')
@@ -41,7 +42,7 @@ class CreateMrfTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('mrf');
+		Schema::drop('swo');
 	}
 
 }

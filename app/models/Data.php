@@ -1,15 +1,10 @@
 <?php
 
-class MRF extends \Eloquent {
+class Data extends \Eloquent {
 
 	protected $guarded = ['id'];
 
-    protected $table = 'mrf';
-
-	public function lists()
-    {
-        return $this->hasMany('MRFList', , 'mrf_id');
-    }
+    protected $table = 'data';
 
     public function requester()
     {
