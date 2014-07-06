@@ -23,7 +23,6 @@
 				</button>
 				<a class="navbar-brand" href="#">SWO/MRF</a>
 			</div>
-
 			<div class="collapse navbar-collapse" id="navigation">
 				<ul class="nav navbar-nav navbar-left">
 					@if (Auth::check())
