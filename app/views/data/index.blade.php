@@ -36,6 +36,10 @@
 		</tbody>
 	</table>
 
+	@if (isset($userCreate))
+	<a href="{{ URL::route('admin.user.create') }}" class="btn btn-default" role="button">Create</a>
+	@else
 	<a href="{{ URL::route('data.create', ['name' => strtolower($name['abbr'])]) }}" class="btn btn-default" role="button">Create</a>
+	@endif
 </div>
 @stop

@@ -47,6 +47,9 @@ Route::group(['before' => 'authentication'], function()
 		Route::get('admin/{name}', ['uses' => 'AdminController@showList', 'as' => 'admin.index'])->where('name', '\b(swo)\b|\b(mrf)\b');
 		Route::get('admin/{name}/{id}', ['uses' => 'AdminController@showDetails', 'as' => 'admin.details'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
 		Route::post('admin/{name}/{id}', ['uses' => 'AdminController@handleApproval', 'as' => 'admin.approval'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
+		Route::get('admin/user', ['uses' => 'UserController@showList', 'as' => 'admin.user']);
+		Route::get('admin/create', ['uses' => 'UserController@showCreateForm', 'as' => 'admin.user.create']);
+		Route::post('admin/create', ['uses' => 'UserController@handleForm', 'as' => 'admin.user.createAction']);
 		// Route::get('admin/swo/{id}', ['uses' => 'AdminSWOController@showSWODetails', 'as' => 'admin.swo.details'])->where('id', '[0-9]+');
 		// Route::post('admin/swo/{id}', ['uses' => 'AdminSWOController@handleApproval', 'as' => 'admin.swo.approve'])->where('id', '[0-9]+');
 	});

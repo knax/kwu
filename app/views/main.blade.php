@@ -26,6 +26,9 @@
 					@if (Auth::user()->isAdmin())
 					{{ HTML::generateLi('admin/swo','Admin SWO') }}
 					{{ HTML::generateLi('admin/mrf','Admin MRF') }}
+					@if (Auth::user()->admin->isSuperAdmin())
+					{{ HTML::generateLi('admin/user','Manage User') }}
+					@endif
 					@endif
 <!-- 					@if (Auth::user()->isAdmin())
 					{{ HTML::generateLi('admin/swo','Admin SWO') }}
