@@ -6,16 +6,43 @@ class Data extends \Eloquent {
 
     protected $table = 'data';
 
-    public static $tableHeader = [
+    public static $tableHeaderList = [
     'No',
     'Requester name',
     'Approved'
     ];
 
-    public static function getTableData($data, $type) {
+    public static $tableHeaderDetails = [
+    'swo' => [
+    'No',
+    'Serial Number',
+    'Description',
+    'Service Requested'
+    ],
+    'mrf' => [
+    'No',
+    'Description',
+    'Qty',
+    'Unit',
+    'Remarks'
+    ]
+    ];
+
+    public static $nameDescription = [
+    'swo' => [
+    'full' => 'Service Work Order',
+    'abbr' => 'SWO'
+    ],
+    'mrf' => [
+    'full' => 'Material Request Form',
+    'abbr' => 'MRF'
+    ]
+    ];
+
+    public static function getTableByData($data) {
         $tableBody = [];
 
-        foreach ($data->type($type)->get() as $row) {
+        foreach ($data as $row) {
             $temp = [
             $row->no,
             $row->requester->full_name,
@@ -61,5 +88,21 @@ class Data extends \Eloquent {
 
     public function scopeNotApproved($query) {
         return $query->where('approver_id', '=', null);
+    }
+
+    public function scopeByDepartement($query, $departement = '')
+    {
+        return $query->where('no', 'like', '%' . $departement .'%');
+    }
+
+    public function scopeCanBeApproved($query, $admin)
+    {
+        $type = $admin->type;
+
+        if ($admin->type == 'superadmin') {
+            return $query;
+        } else {
+            return $query->where('requester_is_admin', '=', false);
+        }
     }
 }

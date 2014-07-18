@@ -2,7 +2,7 @@
 	margin-top: 70px;
 }
 
-tbody#table-body > tr { cursor: pointer; }
+table#index-list > tbody > tr { cursor: pointer; }
 
 tr#signature > td {
 
@@ -16,4 +16,18 @@ div#right-side {
 div#insert-button-wrapper {
 	margin-right: auto;
 	margin-left: auto;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #content, #content * {
+    visibility: visible;
+  }
+  #content {
+    position: relative;
+    left: 0;
+    top: -70px;
+  }
 }

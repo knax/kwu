@@ -11,7 +11,7 @@ class AdminSWOController extends \BaseController {
 			$type = '';
 		}
 
-		$swo = SWO::where('no', 'LIKE', '%' . $type . '%')->where('approver_id', '=', null)->get();
+		$swo = SWO::where('no', 'LIKE', '%' . $type . '%')->get();
 
 		$tableHeader = [
 		'No',

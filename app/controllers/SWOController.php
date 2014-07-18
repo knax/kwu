@@ -20,7 +20,7 @@ class SWOController extends BaseController {
 			$data->requester->full_name,
 			($data->isApproved()) ? 'Ya' : 'Tidak'
 			];
-			$tableBody[$data->id] = $temp;
+				$tableBody[$data->id] = $temp;
 		}
 
 		return View::make('swo.index', [

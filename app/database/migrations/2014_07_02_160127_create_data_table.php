@@ -24,6 +24,7 @@ class CreateDataTable extends Migration {
 			$table->text('additional_data');
 			$table->integer('approver_id')->unsigned()->nullable();
 			$table->integer('requester_id')->unsigned();
+			$table->boolean('requester_is_admin');
 			$table->foreign('approver_id')
 				  ->references('id')->on('users')
 				  ->onDelete('no action');
@@ -42,7 +43,7 @@ class CreateDataTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('swo');
+		Schema::drop('data');
 	}
 
 }
