@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box;
+	font-size: 11pt;
+}
+div#print-container {
+	position: relative;
+	margin: 10mm;
+	/*height: 297mm;*/
+	height: 277mm;
+	width: 185mm;
+}
+div#print {
+}
+header {
+	height: 24mm;
+	border-style: solid;
+	border-width: 1px;
+}
+header > p {
+	text-align: center;
+	padding-top: 1mm;
+	font-weight: bold;
+	font-size: 16pt;
+}
+table, th, td {
+	border:1px solid black;
+}
+table > tbody > tr > td {
+	padding: 1mm;
+}
+table#main-data {
+	position: absolute;
+	top: 32mm;
+	left: 0;
+}
+table#main-data > tbody > tr > td.data {
+	width: 70mm;
+
+}
+table#main-data > tbody > tr > td.label {
+	width: 32mm;
+	box-sizing: border-box;
+
+}
+table#additional-data {
+	position: absolute;
+	top: 64mm;
+	left: 0;
+}
+table#additional-data > tbody > tr > td {
+	width: 60mm;
+}
+table#signature {
+	position: absolute;
+	bottom: 40mm;
+	right: 0mm;
+	text-align: center;
+}
+table#signature > tbody > tr > td {
+	height: 20mm;
+	width: 50mm;
+}
+table#signature > tfoot > tr > td {
+}

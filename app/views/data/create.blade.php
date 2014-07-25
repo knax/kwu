@@ -46,13 +46,14 @@
 					<div class="col-md-6">
 						<select class="form-control" id="departement" name="departement">
 							<option value="ADM">ADM</option>
-							<option value="GYRO">GYRO</option>
-							<option value="LOGGING">LOGGING</option>
-							<option value="LOGISTIC">LOGISTIC</option>
-							<option value="MOTOR-DD">MOTOR-DD</option>
+							<option value="GYR">GYRO</option>
+							<option value="LOG">LOGGING</option>
+							<option value="SHR">LOGISTIC(SHR)</option>
+							<option value="MTR">MOTOR</option>
+							<option value="DD">DD</option>
 							<option value="MWD">MWD</option>
-							<option value="OFFICE">OFFICE</option>
-							<option value="WORKSHOP">WORKSHOP</option>
+							<option value="OFF">OFFICE</option>
+							<option value="WRK">WORKSHOP</option>
 						</select>
 					</div>
 				</div>

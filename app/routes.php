@@ -55,5 +55,8 @@ Route::group(['before' => 'authentication'], function()
 	});
 });
 
+Route::get('{name}/{id}/print/raw', ['uses' => 'DataController@showPrintRaw', 'as' => 'data.print.raw'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
+Route::get('{name}/{id}/print', ['uses' => 'DataController@showPrint', 'as' => 'data.print'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
+
 Route::get('login', ['uses' => 'AuthenticationController@showLoginForm', 'as' => 'login'])->before('logged_in');;
 Route::post('login', ['uses' => 'AuthenticationController@handleLoginData', 'as' => 'loginAction']);

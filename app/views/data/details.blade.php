@@ -71,9 +71,9 @@
 		<div class="col-sm-12">
 			<table id="details-list" class="table table-bordered">
 				<thead>
-				@foreach($tableHeader as $header)
-				<th>{{$header}}</th>
-				@endforeach
+					@foreach($tableHeader as $header)
+					<th>{{$header}}</th>
+					@endforeach
 				</thead>
 			</table>
 		</div>
@@ -115,12 +115,22 @@
 
 	<hr>
 
+	<div class="row">
+		<div class="col-sm-2">
+			<a href="{{ URL::route('data.print', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" class="btn btn-default" role="button">Print</a>
+		</div>
+		<div class="col-sm-10"></div>
+	</div>
+
+	<hr>
+
 	@if (isset($approving))
 
 	<div class="row">
 		<div class="col-sm-2">
 			<form action="{{ URL::route('admin.approval', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" method="POST">
-		<input id="submit" type="submit" class="btn btn-primary" value="Approve"></form>
+				<input id="submit" type="submit" class="btn btn-primary" value="Approve">
+			</form>
 		</div>
 		<div class="col-sm-10"></div>
 	</div>

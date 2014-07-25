@@ -13,6 +13,35 @@ class DataController extends BaseController {
 			]);
 	}
 
+	public function showPrintRaw($name, $id)
+	{
+		$data = Data::findOrFail($id);
+
+		$table = [];
+
+		$table[] = '<thead>';
+		foreach (Data::$tableHeaderDetails[$name] as $value) {
+			$table[] = '<th>' . $value . '</th>';
+		}
+		$table[] = '</thead>';
+
+		$table[] = '<tbody>';
+		foreach (json_decode($data->additional_data) as $row) {
+			$table[] = '<tr>';
+			foreach ($row as $value) {
+				$table[] = '<td>' . $value . '</td>';
+			}
+			$table[] = '</tr>';
+		}
+		$table[] = '</tbody>';
+
+		return View::make('data.print', [
+			'data' => $data,
+			'table' => implode($table, ''),
+			'name' => Data::$nameDescription[$name]
+			]);
+	}
+
 	public function showDetail($name, $id)
 	{
 		$data = Data::findOrFail($id);
@@ -47,5 +76,49 @@ class DataController extends BaseController {
 		Session::flash('notices', 'Data telah berhasil dimasukan');
 
 		return Redirect::route('data.index', ['name' => $name]);
+	}
+
+	public function showPrint($name, $id) {
+		$binary = base_path() . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf';
+		// $binary = 'wkhtmltopdf';
+		$snappy = new Knp\Snappy\Pdf($binary);
+		// print_r($snappy->getOutput(URL::route('data.print.raw', ['name' => $name, 'id' => $id])));
+		// return $snappy->getOutput(URL::route('data.print.raw', ['name' => $name, 'id' => $id]));
+		$response = Response::make($snappy->getOutput(URL::route('data.print.raw', ['name' => $name, 'id' => $id])));
+		$response->header('Content-Type', 'application/pdf');
+		$response->header('Content-Disposition', 'attachment; filename="record.pdf"');
+		return $response;
+		// return URL::route('data.print.raw', ['name' => $name, 'id' => $id]);
+
+
+		// $snappy = new Pdf('wkhtmltopdf');
+
+		// echo $snappy->getOutput('http://localhost:2323/');
+		// $data = Data::findOrFail($id);
+
+		// $table = [];
+
+		// $table[] = '<thead>';
+		// foreach (Data::$tableHeaderDetails[$name] as $value) {
+		// 	$table[] = '<th>' . $value . '</th>';
+		// }
+		// $table[] = '</thead>';
+
+		// $table[] = '<tbody>';
+		// foreach (json_decode($data->additional_data) as $row) {
+		// 	$table[] = '<tr>';
+		// 	foreach ($row as $value) {
+		// 		$table[] = '<td>' . $value . '</td>';
+		// 	}
+		// 	$table[] = '</tr>';
+		// }
+		// $table[] = '</tbody>';
+
+		// return PDF::loadHTML(View::make('data.print', [
+		// 	'data' => $data,
+		// 	'table' => implode($table, ''),
+		// 	'name' => Data::$nameDescription[$name]
+		// 	]))->setOption('user-style-sheet', 'http://localhost:2323/css/print.css')->download();
+		// return PDF::loadFile(URL::route('data.print.raw', ['name' => $name, 'id' => $id]))->stream('github.pdf');
 	}
 }
