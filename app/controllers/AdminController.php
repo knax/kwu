@@ -29,7 +29,6 @@ class AdminController extends \BaseController {
 	{
 		$data = Data::findOrFail($id);
 
-		// print_r((string) $data);
 		$data->approver_id = Auth::id();
 		$data->save();
 
