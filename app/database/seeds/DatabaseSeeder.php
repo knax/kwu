@@ -12,10 +12,8 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('UserTableSeeder');
-		$this->call('MRFTableSeeder');
-		$this->call('SWOTableSeeder');
-		$this->call('MRFListTableSeeder');
-		$this->call('SWOListTableSeeder');
+		$this->call('AdminTableSeeder');
+		$this->call('DataTableSeeder');
 	}
 
 }

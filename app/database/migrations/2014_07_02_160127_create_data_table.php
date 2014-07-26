@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSwoTable extends Migration {
+class CreateDataTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateSwoTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('swo', function(Blueprint $table)
+		Schema::create('data', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('no');
@@ -21,9 +21,10 @@ class CreateSwoTable extends Migration {
 			$table->string('job_number');
 			$table->string('customer_client');
 			$table->text('note');
-			$table->boolean('approved');
+			$table->text('additional_data');
 			$table->integer('approver_id')->unsigned()->nullable();
 			$table->integer('requester_id')->unsigned();
+			$table->boolean('requester_is_admin');
 			$table->foreign('approver_id')
 				  ->references('id')->on('users')
 				  ->onDelete('no action');
@@ -42,7 +43,7 @@ class CreateSwoTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('swo');
+		Schema::drop('data');
 	}
 
 }

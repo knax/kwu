@@ -16,8 +16,8 @@ class CreateAdminTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('type');
-			$table->integer('users_id')->unsigned();
-			$table->foreign('users_id')
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')
 				  ->references('id')->on('users')
 				  ->onDelete('cascade');
 			$table->timestamps();

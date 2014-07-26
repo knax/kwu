@@ -5,11 +5,6 @@
 	<title>SWO/MRF</title>
 	{{ HTML::style('bower_components/bootstrap/dist/css/bootstrap.min.css') }}
 	{{ HTML::style('css/style.css') }}
-	{{ HTML::script('bower_components/jquery/dist/jquery.min.js') }}
-	{{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js') }}
-	{{ HTML::script('bower_components/moment/min/moment.min.js') }}
-	{{ HTML::script('js/jquery.tabletojson.js') }}
-	{{ HTML::script('js/script.js') }}
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -23,12 +18,19 @@
 				</button>
 				<a class="navbar-brand" href="#">SWO/MRF</a>
 			</div>
-
 			<div class="collapse navbar-collapse" id="navigation">
 				<ul class="nav navbar-nav navbar-left">
 					@if (Auth::check())
-					{{ HTML::generateLi('swo','SWO') }}
-					{{ HTML::generateLi('mrf','MRF') }}
+					{{ HTML::generateLi(URL::route('data.index', ['name' => 'swo']),'SWO') }}
+					{{ HTML::generateLi(URL::route('data.index', ['name' => 'mrf']),'MRF') }}
+					@if (Auth::user()->isAdmin())
+					{{ HTML::generateLi(URL::route('admin.index', ['name' => 'swo']),'Admin SWO') }}
+					{{ HTML::generateLi(URL::route('admin.index', ['name' => 'mrf']),'Admin MRF') }}
+					@if (Auth::user()->admin->isSuperAdmin())
+					{{ HTML::generateLi(URL::route('admin.super.user'),'Manage User') }}
+					{{ HTML::generateLi(URL::route('admin.super.insertnumber'),'Change number') }}
+					@endif
+					@endif
 					@endif
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -45,5 +47,11 @@
 	<div class="container">
 		@yield('content')
 	</div>
+	{{ HTML::script('bower_components/jquery/dist/jquery.min.js') }}
+	{{ HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js') }}
+	{{ HTML::script('bower_components/moment/min/moment.min.js') }}
+	{{ HTML::script('js/jquery.tabletojson.js') }}
+	{{ HTML::script('js/knax.js') }}
+	{{ HTML::script('js/register-handler.js') }}
 </body>
 </html>
