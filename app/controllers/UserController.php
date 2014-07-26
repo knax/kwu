@@ -58,7 +58,7 @@ class UserController extends \BaseController {
 
 		Session::flash('notices', 'User telah berhasil dimasukan');
 
-		return Redirect::route('admin.user');
+		return Redirect::route('admin.super.user');
 	}
 
 }
