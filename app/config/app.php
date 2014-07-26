@@ -123,7 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Barryvdh\Snappy\ServiceProvider',
-
+		'Philf\Setting\SettingServiceProvider',
 	),
 
 	/*

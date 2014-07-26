@@ -21,19 +21,16 @@
 			<div class="collapse navbar-collapse" id="navigation">
 				<ul class="nav navbar-nav navbar-left">
 					@if (Auth::check())
-					{{ HTML::generateLi('swo','SWO') }}
-					{{ HTML::generateLi('mrf','MRF') }}
+					{{ HTML::generateLi(URL::route('data.index', ['name' => 'swo']),'SWO') }}
+					{{ HTML::generateLi(URL::route('data.index', ['name' => 'mrf']),'MRF') }}
 					@if (Auth::user()->isAdmin())
-					{{ HTML::generateLi('admin/swo','Admin SWO') }}
-					{{ HTML::generateLi('admin/mrf','Admin MRF') }}
+					{{ HTML::generateLi(URL::route('admin.index', ['name' => 'swo']),'Admin SWO') }}
+					{{ HTML::generateLi(URL::route('admin.index', ['name' => 'mrf']),'Admin MRF') }}
 					@if (Auth::user()->admin->isSuperAdmin())
-					{{ HTML::generateLi('admin/user','Manage User') }}
+					{{ HTML::generateLi(URL::route('admin.super.user'),'Manage User') }}
+					{{ HTML::generateLi(URL::route('admin.super.insertnumber'),'Change number') }}
 					@endif
 					@endif
-<!-- 					@if (Auth::user()->isAdmin())
-					{{ HTML::generateLi('admin/swo','Admin SWO') }}
-					{{ HTML::generateLi('admin/mrf','Admin MRF') }}
-					@endif -->
 					@endif
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

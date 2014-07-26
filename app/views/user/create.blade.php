@@ -3,7 +3,7 @@
 @section('content')
 
 <div data-type="createuser" id="content">
-	<form action="{{ URL::route('admin.user.createAction') }}" method="POST" class="form-horizontal">
+	<form action="{{ URL::route('admin.super.user.createAction') }}" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<h2>Registrasi User</h2>
