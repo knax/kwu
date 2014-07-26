@@ -37,11 +37,6 @@ class AuthenticationController extends \BaseController {
 				->withErrors('Username atau Password salah');
 			}
 		}
-
-		// if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password'))))
-		// {
-		// 	return Redirect::intended('/');
-		// }
 	}
 
 	public function handleLogout()

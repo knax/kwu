@@ -19,7 +19,6 @@ class SuperAdminController extends BaseController {
 		}
 		Setting::set('data.insert-number', $insertNumber);
 		return Reditect::route('homepage');
-		// return View::make('admin.insertnumber', ['insertnumber' => Setting::get('data.insert-number')]);
 	}
 
 }
