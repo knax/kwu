@@ -14,7 +14,7 @@
 		<div id="left-side" class="col-sm-6">
 			<div class="row form-group">
 				<div class="col-sm-6">
-					<label for="no" class="control-label">Nomor</label>
+					<label for="no" class="control-label">{{ Lang::get('data.number') }}</label>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="no" name="no" value="{{ $data->no }}" disabled>
@@ -22,7 +22,7 @@
 			</div>
 			<div class="row form-group">
 				<div class="col-sm-6">
-					<label for="date" class="control-label">Date</label>
+					<label for="date" class="control-label">{{ Lang::get('data.date') }}</label>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="date" name="date" value="{{ $data->date }}" disabled>
@@ -30,7 +30,7 @@
 			</div>
 			<div class="row form-group">
 				<div class="col-sm-6">
-					<label for="requester" class="control-label">Requester</label>
+					<label for="requester" class="control-label">{{ Lang::get('data.requester') }}</label>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="requester" name="requester" value="{{ $data->requester->full_name }}" disabled>
@@ -40,7 +40,7 @@
 		<div id="right-side" class="col-sm-6">
 			<div class="row form-group">
 				<div class="col-sm-6">
-					<label for="date" class="control-label">Departement</label>
+					<label for="date" class="control-label">{{ Lang::get('data.departement') }}</label>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="departement" name="departement" value="{{ $data->departement }}" disabled>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="row form-group">
 				<div class="col-sm-6">
-					<label for="job_number" class="control-label">Job Number</label>
+					<label for="job_number" class="control-label">{{ Lang::get('data.job_number') }}</label>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="job-number" name="job_number" value="{{ $data->job_number }}" disabled>
@@ -56,7 +56,7 @@
 			</div>
 			<div class="row form-group">
 				<div class="col-sm-6">
-					<label for="customer_client" class="control-label">Customer Client</label>
+					<label for="customer_client" class="control-label">{{ Lang::get('data.customer_client') }}</label>
 				</div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="customer-client" name="customer_client" value="{{ $data->customer_client }}" disabled>
@@ -84,7 +84,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="form-group">
-				<label for="note">Note:</label>
+				<label for="note">{{ Lang::get('data.note') }}</label>
 				<textarea class="form-control" name="note" disabled>{{ $data->note }}</textarea>
 			</div>
 		</div>
@@ -96,8 +96,8 @@
 		<div class="col-sm-offset-8 col-sm-4">
 			<table class="table table-bordered">
 				<thead>
-					<th class="text-center">Request By</th>
-					<th class="text-center">Approved By</th>
+						<th class="text-center">{{ Lang::get('data.requested_by') }}</th>
+						<th class="text-center">{{ Lang::get('data.approved_by') }}</th>
 				</thead>
 				<tbody>
 					<tr id="signature">
@@ -117,7 +117,7 @@
 
 	<div class="row">
 		<div class="col-sm-2">
-			<a href="{{ URL::route('data.print', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" class="btn btn-default" role="button">Print</a>
+			<a href="{{ URL::route('data.print', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" class="btn btn-default" role="button">{{ Lang::get('general.print') }}</a>
 		</div>
 		<div class="col-sm-10"></div>
 	</div>
@@ -129,7 +129,7 @@
 	<div class="row">
 		<div class="col-sm-2">
 			<form action="{{ URL::route('admin.approval', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" method="POST">
-				<input id="submit" type="submit" class="btn btn-primary" value="Approve">
+				<input id="submit" type="submit" class="btn btn-primary" value="{{ Lang::get('general.approve') }}">
 			</form>
 		</div>
 		<div class="col-sm-10"></div>

@@ -15,28 +15,28 @@ Route::filter('logged_in', function()
 {
 	if (Auth::check()) {
 		return Redirect::route('homepage')
-		->with('notice', 'Anda sudah masuk');
+		->with('notice', Lang::get('authentication.already_signed_in'));
 	}
 });
 
 Route::filter('authentication', function() {
 	if (Auth::guest())
 		return Redirect::intended('login')
-	->withErrors('Anda harus login terlebih dahulu');
+	->withErrors(Lang::get('authentication.needs_signin'));
 });
 
 Route::filter('checkSuperAdmin', function() {
 	if (!Auth::user()->isAdmin())
 		return Redirect::route('homepage')
-	->withErrors('Anda tidak dapat mengakses halaman superadmin');
+	->withErrors(Lang::get('authentication.not_enough_permission'));
 	if (!Auth::user()->admin->isSuperAdmin())
 		return Redirect::route('homepage')
-	->withErrors('Anda tidak dapat mengakses halaman superadmin');
+	->withErrors(Lang::get('authentication.not_enough_permission'));
 });
 Route::filter('checkAdmin', function() {
 	if (!Auth::user()->isAdmin())
 		return Redirect::route('homepage')
-	->withErrors('Anda tidak dapat mengakses halaman admin');
+	->withErrors(Lang::get('authentication.not_enough_permission'));
 });
 
 

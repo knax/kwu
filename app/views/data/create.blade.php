@@ -15,7 +15,7 @@
 			<div id="left-side" class="col-md-6">
 				<div class="row form-group">
 					<div class="col-md-6">
-						<label for="no" class="control-label">Nomor</label>
+						<label for="no" class="control-label">{{ Lang::get('data.number') }}</label>
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="no" name="no" data-insert-number="{{ $insertNumber }}" readonly>
@@ -23,7 +23,7 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-md-6">
-						<label for="date" class="control-label">Date</label>
+						<label for="date" class="control-label">{{ Lang::get('data.date') }}</label>
 					</div>
 					<div class="col-md-6">
 						<input type="date" class="form-control" id="date" name="date">
@@ -31,7 +31,7 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-md-6">
-						<label for="requester" class="control-label">Requester</label>
+						<label for="requester" class="control-label">{{ Lang::get('data.requester') }}</label>
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="requester" value="{{ Auth::user()->full_name }}" name="requester" disabled>
@@ -41,14 +41,14 @@
 			<div id="right-side" class="col-md-6">
 				<div class="row form-group">
 					<div class="col-md-6">
-						<label for="date" class="control-label">Departement</label>
+						<label for="date" class="control-label">{{ Lang::get('data.departement') }}</label>
 					</div>
 					<div class="col-md-6">
 						<select class="form-control" id="departement" name="departement">
 							<option value="ADM">ADM</option>
 							<option value="GYR">GYRO</option>
 							<option value="LOG">LOGGING</option>
-							<option value="SHR">LOGISTIC(SHR)</option>
+							<option value="SHR">LOGISTIC</option>
 							<option value="MTR">MOTOR</option>
 							<option value="DD">DD</option>
 							<option value="MWD">MWD</option>
@@ -59,7 +59,7 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-md-6">
-						<label for="job_number" class="control-label">Job Number</label>
+						<label for="job_number" class="control-label">{{ Lang::get('data.job_number') }}</label>
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="job_number" name="job_number">
@@ -67,7 +67,7 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-md-6">
-						<label for="customer_client" class="control-label">Customer Client</label>
+						<label for="customer_client" class="control-label">{{ Lang::get('data.customer_client') }}</label>
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="customer_client" name="customer_client">
@@ -93,7 +93,7 @@
 		</div>
 		<div class="text-center">
 			<a href="#" class="btn btn-primary" id="modal-launcher" data-toggle="modal" data-target="#insert-list-modal">
-				Insert
+				{{ Lang::get('general.insert') }}
 			</a>
 		</div>
 
@@ -102,7 +102,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="note">Note:</label>
+					<label for="note">{{ Lang::get('data.note') }}</label>
 					<textarea class="form-control" id="note" name="note"></textarea>
 				</div>
 			</div>
@@ -114,8 +114,8 @@
 			<div class="col-md-offset-8 col-md-4">
 				<table class="table table-bordered">
 					<thead>
-						<th class="text-center">Request By</th>
-						<th class="text-center">Approved By</th>
+						<th class="text-center">{{ Lang::get('data.requested_by') }}</th>
+						<th class="text-center">{{ Lang::get('data.approved_by') }}</th>
 					</thead>
 					<tbody>
 						<tr id="signature">
@@ -142,7 +142,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-					<h4 class="modal-title">Insert Data</h4>
+					<h4 class="modal-title">{{ Lang::get('data.insert_data') }}</h4>
 				</div>
 				<div class="modal-body">
 					<form id="list-form" class="form-horizontal" role="form">
@@ -157,8 +157,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="list-save-change">Save changes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">{{ Lang::get('general.close') }}</button>
+					<button type="button" class="btn btn-primary" id="list-save-change">{{ Lang::get('general.save_changes') }}</button>
 				</div>
 			</div>
 		</div>

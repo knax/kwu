@@ -8,7 +8,7 @@ class Data extends \Eloquent {
 
     public static $tableHeaderList = [
     'No',
-    'Requester name',
+    'Requester',
     'Approved'
     ];
 
@@ -46,7 +46,7 @@ class Data extends \Eloquent {
             $temp = [
             $row->no,
             $row->requester->full_name,
-            ($row->isApproved()) ? 'Ya' : 'Tidak'
+            ($row->isApproved()) ? Lang::get('general.yes') : Lang::get('general.no')
             ];
             $tableBody[$row->id] = $temp;
         }

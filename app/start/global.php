@@ -85,8 +85,7 @@ require app_path().'/filters.php';
  */
 
 HTML::macro('isActiveState', function($linkTo) {
-    return (Request::url() === $linkTo) ? 'active' : '';
-    // return (Request::is($linkTo . '/*') or Request::is($linkTo)) ? ' active' : '';
+    return (strpos(Request::url(), $linkTo) !== false) ? 'active' : '';
 });
 
 HTML::macro('generateLi', function($linkTo, $linkName, array $additionalClasses = []) {

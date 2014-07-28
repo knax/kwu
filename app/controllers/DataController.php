@@ -47,7 +47,7 @@ class DataController extends BaseController {
 		$data = Data::findOrFail($id);
 
 		if( $data->requester_id != Auth::id()) {
-			return Redirect::route('data.index')->withErrors('Anda tidak dapat mengakses record tersebut');
+			return Redirect::route('data.index', ['name' => $name])->withErrors(Lang::get('authentication.not_enough_permission'));
 		}
 
 		return View::make('data.details', [
@@ -73,7 +73,7 @@ class DataController extends BaseController {
 		$data->requester_id = Auth::id();
 		$data->save();
 
-		Session::flash('notices', 'Data telah berhasil dimasukan');
+		Session::flash('notices', Lang::get('data.successful_insert'));
 
 		$lastNumber = Setting::get('data.insert-number');
 

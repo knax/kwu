@@ -14,11 +14,7 @@ class AuthenticationController extends \BaseController {
 			'password' => 'required'
 			);
 
-		$messages = array(
-			'required' => 'Kolom :attribute harus dimasukkan.',
-			);
-
-		$validator = Validator::make(Input::all(), $rules, $messages);
+		$validator = Validator::make(Input::all(), $rules);
 
 		if ($validator->fails()) {
 			return Redirect::to('login')
@@ -31,10 +27,10 @@ class AuthenticationController extends \BaseController {
 				);
 
 			if (Auth::attempt($userdata)) {
-				return Redirect::intended('/');
+				return Redirect::route('homepage');
 			} else {
 				return Redirect::to('login')
-				->withErrors('Username atau Password salah');
+				->withErrors(Lang::get('authentication.wrong_username_or_password'));
 			}
 		}
 	}
@@ -43,6 +39,6 @@ class AuthenticationController extends \BaseController {
 	{
 		Auth::logout();
 
-		return Redirect::intended('/login');
+		return Redirect::intended(URL::route('login'));
 	}
 }

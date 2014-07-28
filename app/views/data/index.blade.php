@@ -3,19 +3,19 @@
 @section('content')
 
 <div id="content" data-type="index">
-	<h2>Homepage SWO</h2>
+	<h2>{{ Lang::get('general.homepage') }} {{ $name['abbr'] }}</h2>
 
 	@foreach ($errors->all() as $error)
 	<div class="alert alert-warning alert-dismissible" role="alert">
 		{{ $error }}
-		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 	</div>
 	@endforeach
 
 	@if (Session::has('notices'))
 	<div class="alert alert-success alert-dismissible" role="alert">
 		{{ $value = Session::get('notices') }}
-		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 	</div>
 	@endif
 
@@ -37,9 +37,9 @@
 	</table>
 
 	@if (isset($userCreate))
-	<a href="{{ URL::route('admin.super.user.create') }}" class="btn btn-default" role="button">Create</a>
+	<a href="{{ URL::route('admin.super.user.create') }}" class="btn btn-default" role="button">{{ Lang::get('general.create') }}</a>
 	@else
-	<a href="{{ URL::route('data.create', ['name' => strtolower($name['abbr'])]) }}" class="btn btn-default" role="button">Create</a>
+	<a href="{{ URL::route('data.create', ['name' => strtolower($name['abbr'])]) }}" class="btn btn-default" role="button">{{ Lang::get('general.create') }}</a>
 	@endif
 </div>
 @stop
