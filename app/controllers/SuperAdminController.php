@@ -18,7 +18,9 @@ class SuperAdminController extends BaseController {
 			return false;
 		}
 		Setting::set('data.insert-number', $insertNumber);
-		return Reditect::route('homepage');
+
+		Session::flash(Lang::get('admin.change_successful'));
+		return Redirect::route('homepage');
 	}
 
 }

@@ -15,7 +15,7 @@ class Admin extends \Eloquent {
     	return $this->type == 'superadmin';
     }
 
-    public function getDataNeedApproval($type)
+    public function getDataNeedApproval()
     {
     	$departement = $this->type;
 
@@ -23,7 +23,7 @@ class Admin extends \Eloquent {
 			$departement = '';
 		}
 
-		$data = Data::byDepartement($departement)->type($type)->notApproved()->canBeApproved($this)->get();
+		$data = Data::byDepartement($departement)->notApproved()->canBeApproved($this)->get();
 
   		return $data;
     }

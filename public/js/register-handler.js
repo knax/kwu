@@ -1,35 +1,31 @@
-(function(){
+(function() {
 	'use strict';
-$(function() {
-	var type = $('div#content')
-		.data('type');
+	$(function() {
+		var type = $('div#content')
+			.data('type');
 
-	if (type === 'details') {
-		Knax.handleTableDetails();
-	}
+		if (type === 'index') {
+			Knax.makeTableRowClickable();
+		}
 
-	if (type === 'index') {
-		Knax.makeTableRowClickable();
-	}
+		if (type === 'create') {
+			Knax.setInputDateToToday();
 
-	if (type === 'create') {
-		Knax.setInputDateToToday();
+			Knax.changeValue()();
 
-		Knax.changeValue()();
+			Knax.giveNumberToModal();
 
-		Knax.giveNumberToModal();
+			$('select#departement')
+				.change(Knax.changeValue());
+			$('input#date')
+				.change(Knax.changeValue());
 
-		$('select#departement')
-			.change(Knax.changeValue());
-		$('input#date')
-			.change(Knax.changeValue());
+			$('input#submit')
+				.click(Knax.handleFormSubmit());
 
-		$('input#submit')
-			.click(Knax.handleFormSubmit());
+			Knax.handleModalSave();
 
-		Knax.handleModalSave();
-
-		Knax.handleFormSubmit();
-	}
-});
+			Knax.handleFormSubmit();
+		}
+	});
 }());

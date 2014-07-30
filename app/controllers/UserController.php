@@ -4,33 +4,26 @@ class UserController extends \BaseController {
 
 	public function showList()
 	{
-		$tableHeader = [
-		'Username',
-		'Nama Lengkap',
-		'Admin'
-		];
-
 		$tableBody = [];
 
-		$user = User::all();
+		$users = User::all();
 
-		foreach ($user as $row) {
-			$admin = 'Bukan';
-			if ($row->isAdmin()) {
-				$admin = $row->admin->type;
-			}
-			$temp = [
-			$row->username,
-			$row->full_name,
-			$admin
+		foreach ($users as $user) {
+			$row = [
+			$user->username,
+			$user->full_name,
+			($user->isAdmin()) ? $user->admin->type : Lang::get('general.no')
 			];
-			$tableBody[$row->id] = $temp;
+			$tableBody[$user->id] = $row;
 		}
 
 		return View::make('data.index', [
-			'tableHeader' => $tableHeader,
-			'tableBody' => $tableBody,
-			'name' => ['full' => 'User List', 'abbr' => ''],
+			'header' => Lang::get('user.user-list'),
+			'table' => [
+				'header' => Setting::get('table-header.data-list'),
+				'body' => $tableBody,
+				'class' => []
+			],
 			'userCreate' => true
 			]);
 
@@ -56,7 +49,7 @@ class UserController extends \BaseController {
 			$user->admin()->save($admin);
 		}
 
-		Session::flash('notices', 'User telah berhasil dimasukan');
+		Session::flash('notices', Lang::get('user.register_complete'));
 
 		return Redirect::route('admin.super.user');
 	}

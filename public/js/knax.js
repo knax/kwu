@@ -1,23 +1,7 @@
 'use strict';
 var Knax = {
-	handleTableDetails: function() {
-		var additionalData = JSON.parse($('input#additional-data')
-			.val());
-		var $table = $('table#details-list');
-		var $tableBody = $('<tbody />');
-		additionalData.forEach(function(row) {
-			var $row = $('<tr />');
-			for (var data in row) {
-				var $td = $('<td />')
-					.text(row[data])
-					.appendTo($row);
-			}
-			$row.appendTo($tableBody);
-		});
-		$tableBody.appendTo($table);
-	},
 	makeTableRowClickable: function() {
-		$.each($('table#index-list > tbody > tr'), function(index, value) {
+		$.each($('table.table-clickable > tbody > tr'), function(index, value) {
 			$(this)
 				.click(function() {
 					window.location.href = document.URL + '/' + $(this)
