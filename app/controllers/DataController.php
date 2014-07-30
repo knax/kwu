@@ -61,24 +61,25 @@ class DataController extends BaseController {
 		return Redirect::route('data.index', ['name' => $name]);
 	}
 
-	public function showPrint($name, $id) {
+	public function showPrint($id) {
+		$data = Data::findOrFail($id);
 		$binary = base_path() . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf';
 		$snappy = new Knp\Snappy\Pdf($binary);
-		$response = Response::make($snappy->getOutput(URL::route('data.print.raw', ['name' => $name, 'id' => $id])));
+		$response = Response::make($snappy->getOutput(URL::route('data.print.raw', ['id' => $id])));
 		$response->header('Content-Type', 'application/pdf');
-		$response->header('Content-Disposition', 'attachment; filename="' . $name . '-' . $id . '.pdf"');
+		$response->header('Content-Disposition', 'attachment; filename="' . $data->no . '.pdf"');
 		return $response;
 	}
 
 
-	public function showPrintRaw($name, $id)
+	public function showPrintRaw($id)
 	{
 		$data = Data::findOrFail($id);
 
 		$table = [];
 
 		$table[] = '<thead>';
-		foreach (Data::$tableHeaderDetails[$name] as $value) {
+		foreach ($data->getAdditionalDataTableHeader() as $value) {
 			$table[] = '<th>' . $value . '</th>';
 		}
 		$table[] = '</thead>';
@@ -96,7 +97,7 @@ class DataController extends BaseController {
 		return View::make('data.print', [
 			'data' => $data,
 			'table' => implode($table, ''),
-			'name' => Data::$nameDescription[$name]
+			'header' => $data->getPageHeader()
 			]);
 	}
 

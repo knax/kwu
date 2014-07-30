@@ -2,7 +2,7 @@
 	margin-top: 70px;
 }
 
-table#table-clickable > tbody > tr { cursor: pointer; }
+table.table-clickable > tbody > tr { cursor: pointer; }
 
 tr#signature > td {
 

@@ -11,21 +11,19 @@
 		<div id="print">
 			<header>
 				<p>
-					{{ $name['full'] }}
-					<br>
-					({{ $name['abbr'] }})
+					{{ implode($header, '<br>') }}
 				</p>
 			</header>
 			<table id="main-data">
 				<tbody>
 					<tr>
-						<td class="label">{{ $name['abbr'] }} NO.</td>
+						<td class="label">{{ $data->type() }} NO.</td>
 						<td class="data">{{ $data->no }}</td>
 						<td class="label">DEPARTEMENT</td>
 						<td class="data">{{ $data->departement }}</td>
 					</tr>
 					<tr>
-						<td class="label">{{ $name['abbr'] }} DATE</td>
+						<td class="label">{{ $data->type() }} DATE</td>
 						<td class="data">{{ $data->date }}</td>
 						<td class="label">JOB NO.</td>
 						<td class="data">{{ $data->job_number }}</td>
