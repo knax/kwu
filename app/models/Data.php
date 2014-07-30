@@ -6,40 +6,33 @@ class Data extends \Eloquent {
 
     protected $table = 'data';
 
-    public static $tableHeaderList = [
-    'No',
-    'Requester',
-    'Approved'
-    ];
 
-    public static $tableHeaderDetails = [
-    'swo' => [
-    'No',
-    'Serial Number',
-    'Description',
-    'Service Requested'
-    ],
-    'mrf' => [
-    'No',
-    'Description',
-    'Qty',
-    'Unit',
-    'Remarks'
-    ]
-    ];
+    public function getNameDescription() {
+        return self::getNameDescriptionByName($this->type());
+    }
 
-    public static $nameDescription = [
-    'swo' => [
-    'full' => 'Service Work Order',
-    'abbr' => 'SWO'
-    ],
-    'mrf' => [
-    'full' => 'Material Request Form',
-    'abbr' => 'MRF'
-    ]
-    ];
+    public static function getNameDescriptionByName($name) {
+        return Setting::get('subtype.' . $name);
+    }
 
-    public static function getTableByData($data) {
+    public function getAdditionalDataTableHeader() {
+        return self::getAdditionalDataTableHeaderByName($this->type());
+    }
+
+    public static function getAdditionalDataTableHeaderByName($name) {
+        return Setting::get('subtype.' . strtoupper($name) . '.header');
+    }
+
+    public function getPageHeader() {
+        return self::getPageHeaderByName($this->type());
+    }
+
+    public static function getPageHeaderByName($name) {
+        $name = strtoupper($name);
+        return ['fullname' => Setting::get('subtype.' . $name . '.fullname'), 'name' => '(' . $name .')'];
+    }
+
+    public static function getListOfDataAsTable($data) {
         $tableBody = [];
 
         foreach ($data as $row) {
@@ -54,14 +47,9 @@ class Data extends \Eloquent {
         return $tableBody;
     }
 
-    public function isSWO()
+    public function type()
     {
-        return strpos($this->no, 'SWO') !== false;
-    }
-
-    public function isMRF()
-    {
-        return strpos($this->no, 'MRF') !== false;
+        return explode('/', $this->no)[1];
     }
 
     public function scopeType($query, $type) {

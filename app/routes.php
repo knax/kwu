@@ -47,14 +47,14 @@ Route::group(['before' => 'authentication'], function()
 
 	Route::get('{name}', ['uses' => 'DataController@showList', 'as' => 'data.index'])->where('name', '\b(swo)\b|\b(mrf)\b');
 	Route::get('{name}/{id}', ['uses' => 'DataController@showDetail', 'as' => 'data.details'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
-	Route::get('{name}/create', ['uses' => 'DataController@showCreateFrom', 'as' => 'data.create'])->where('name', '\b(swo)\b|\b(mrf)\b');
+	Route::get('{name}/create', ['uses' => 'DataController@showCreateForm', 'as' => 'data.create'])->where('name', '\b(swo)\b|\b(mrf)\b');
 	Route::post('{name}', ['uses' => 'DataController@handleFormData', 'as' => 'data.index'])->where('name', '\b(swo)\b|\b(mrf)\b');
 
 	Route::group(['before' => 'checkAdmin'], function()
 	{
-		Route::get('admin/{name}', ['uses' => 'AdminController@showList', 'as' => 'admin.index'])->where('name', '\b(swo)\b|\b(mrf)\b');
-		Route::get('admin/{name}/{id}', ['uses' => 'AdminController@showDetails', 'as' => 'admin.details'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
-		Route::post('admin/{name}/{id}', ['uses' => 'AdminController@handleApproval', 'as' => 'admin.approval'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
+		Route::get('admin/approval', ['uses' => 'ApprovalController@showList', 'as' => 'admin.approval']);
+		Route::get('admin/approval/{id}', ['uses' => 'ApprovalController@showDetails', 'as' => 'admin.approval.details'])->where('id', '[0-9]+');
+		Route::post('admin/approval/{id}', ['uses' => 'ApprovalController@handleApproval', 'as' => 'admin.approval.approve'])->where('id', '[0-9]+');
 		Route::group(['before' => 'checkSuperAdmin'], function()
 		{
 			Route::get('admin/super/user', ['uses' => 'UserController@showList', 'as' => 'admin.super.user']);
@@ -66,8 +66,8 @@ Route::group(['before' => 'authentication'], function()
 	});
 });
 
-Route::get('{name}/{id}/print/raw', ['uses' => 'DataController@showPrintRaw', 'as' => 'data.print.raw'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
-Route::get('{name}/{id}/print', ['uses' => 'DataController@showPrint', 'as' => 'data.print'])->where('name', '\b(swo)\b|\b(mrf)\b')->where('id', '[0-9]+');
+Route::get('print/{id}/raw', ['uses' => 'DataController@showPrintRaw', 'as' => 'data.print.raw'])->where('id', '[0-9]+');
+Route::get('print/{id}', ['uses' => 'DataController@showPrint', 'as' => 'data.print'])->where('id', '[0-9]+');
 
 Route::get('login', ['uses' => 'AuthenticationController@showLoginForm', 'as' => 'login'])->before('logged_in');;
 Route::post('login', ['uses' => 'AuthenticationController@handleLoginData', 'as' => 'loginAction']);

@@ -4,12 +4,6 @@ class UserController extends \BaseController {
 
 	public function showList()
 	{
-		$tableHeader = [
-		'Username',
-		Lang::get('general.full_name'),
-		'Admin'
-		];
-
 		$tableBody = [];
 
 		$users = User::all();
@@ -24,9 +18,12 @@ class UserController extends \BaseController {
 		}
 
 		return View::make('data.index', [
-			'tableHeader' => $tableHeader,
-			'tableBody' => $tableBody,
-			'name' => ['full' => 'User List', 'abbr' => ''],
+			'header' => Lang::get('user.user-list'),
+			'table' => [
+				'header' => Setting::get('table-header.data-list'),
+				'body' => $tableBody,
+				'class' => []
+			],
 			'userCreate' => true
 			]);
 

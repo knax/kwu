@@ -1,11 +1,11 @@
 @extends('main')
 
 @section('content')
-
 <div data-type="create" id="content">
-	<form action="{{ URL::route('data.index', ['name' => strtolower($name['abbr'])]) }}" method="POST" data-form-type="{{ strtolower($name['abbr']) }}">
-		<h2 class="text-center">{{ $name['full'] }}</h2>
-		<h2 class="text-center">({{ $name['abbr'] }})</h2>
+	<form action="{{ URL::route('data.index', ['name' => strtolower($name)]) }}" method="POST" data-form-type="{{ strtolower(strtolower($name)) }}">
+		@foreach ($pageHeader as $row)
+		<h2 class="text-center">{{ $row }}</h2>
+		@endforeach
 
 		<hr>
 

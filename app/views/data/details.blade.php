@@ -3,141 +3,36 @@
 @section('content')
 
 <div data-type="details" id="content">
-	<h2 class="text-center">{{ $name['full'] }}</h2>
-	<h2 class="text-center">({{ $name['abbr'] }})</h2>
+
+	@foreach ($data->getPageHeader() as $row)
+	<h2 class="text-center">{{ $row }}</h2>
+	@endforeach
 
 	<hr>
-
-	<input type="hidden" id="additional-data" name="additional_data" value="{{{ $data->additional_data }}}"hidden>
-
-	<div class="row">
-		<div id="left-side" class="col-sm-6">
-			<div class="row form-group">
-				<div class="col-sm-6">
-					<label for="no" class="control-label">{{ Lang::get('data.number') }}</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="no" name="no" value="{{ $data->no }}" disabled>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-sm-6">
-					<label for="date" class="control-label">{{ Lang::get('data.date') }}</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="date" name="date" value="{{ $data->date }}" disabled>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-sm-6">
-					<label for="requester" class="control-label">{{ Lang::get('data.requester') }}</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="requester" name="requester" value="{{ $data->requester->full_name }}" disabled>
-				</div>
-			</div>
-		</div>
-		<div id="right-side" class="col-sm-6">
-			<div class="row form-group">
-				<div class="col-sm-6">
-					<label for="date" class="control-label">{{ Lang::get('data.departement') }}</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="departement" name="departement" value="{{ $data->departement }}" disabled>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-sm-6">
-					<label for="job_number" class="control-label">{{ Lang::get('data.job_number') }}</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="job-number" name="job_number" value="{{ $data->job_number }}" disabled>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-sm-6">
-					<label for="customer_client" class="control-label">{{ Lang::get('data.customer_client') }}</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="customer-client" name="customer_client" value="{{ $data->customer_client }}" disabled>
-				</div>
-			</div>
-		</div>
-	</div>
+	@include('data.details.header', ['data' => $data])
 
 	<hr>
-
-	<div class="row">
-		<div class="col-sm-12">
-			<table id="details-list" class="table table-bordered">
-				<thead>
-					@foreach($tableHeader as $header)
-					<th>{{$header}}</th>
-					@endforeach
-				</thead>
-			</table>
-		</div>
-	</div>
+	@include('template.table', ['table' => $table, 'class' => 'table-clickable'])
 
 	<hr>
-
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="form-group">
-				<label for="note">{{ Lang::get('data.note') }}</label>
-				<textarea class="form-control" name="note" disabled>{{ $data->note }}</textarea>
-			</div>
-		</div>
-	</div>
+	@include('data.details.note', ['data' => $data])
 
 	<hr>
+	@include('data.details.signature', ['data' => $data])
 
-	<div class="row">
-		<div class="col-sm-offset-8 col-sm-4">
-			<table class="table table-bordered">
-				<thead>
-						<th class="text-center">{{ Lang::get('data.requested_by') }}</th>
-						<th class="text-center">{{ Lang::get('data.approved_by') }}</th>
-				</thead>
-				<tbody>
-					<tr id="signature">
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="text-center">{{ $data->requester->full_name }}</td>
-						<td class="text-center">{{ $data->approver->full_name or '' }}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
 
 	<hr>
-
-	<div class="row">
-		<div class="col-sm-2">
-			<a href="{{ URL::route('data.print', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" class="btn btn-default" role="button">{{ Lang::get('general.print') }}</a>
-		</div>
-		<div class="col-sm-10"></div>
-	</div>
+	@include('data.details.print-button', ['id' => $data->id])
 
 	<hr>
 
 	@if (isset($approving))
-
-	<div class="row">
-		<div class="col-sm-2">
-			<form action="{{ URL::route('admin.approval', ['name' => strtolower($name['abbr']), 'id' => $data->id]) }}" method="POST">
-				<input id="submit" type="submit" class="btn btn-primary" value="{{ Lang::get('general.approve') }}">
-			</form>
-		</div>
-		<div class="col-sm-10"></div>
-	</div>
-
 	<hr>
+	@include('data.details.approval', ['id' => $data->id])
 
 	@endif
+
+	<hr>
 </div>
 
 @stop

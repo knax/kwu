@@ -11,5 +11,7 @@ return array(
 	'save_changes' => 'Save changes',
 	'homepage' => 'Homepage',
 	'admin_type' => 'Admin Type',
-	'requester' => 'Requester'
+	'requester' => 'Requester',
+	'print' => 'Print',
+	'approve' => 'Approve'
 	);

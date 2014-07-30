@@ -8,7 +8,6 @@
 	@foreach (Session::get('notice') as $notice)
 	<div class="alert alert-info" role="alert">{{ $notice }}</div>
 	@endforeach
-
 @endif
 
 @if(Session::has('errors'))

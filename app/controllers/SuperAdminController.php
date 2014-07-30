@@ -18,6 +18,8 @@ class SuperAdminController extends BaseController {
 			return false;
 		}
 		Setting::set('data.insert-number', $insertNumber);
+
+		Session::flash('Insert number successfully changed');
 		return Redirect::route('homepage');
 	}
 
