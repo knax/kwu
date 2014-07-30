@@ -19,7 +19,7 @@ class SuperAdminController extends BaseController {
 		}
 		Setting::set('data.insert-number', $insertNumber);
 
-		Session::flash('Insert number successfully changed');
+		Session::flash(Lang::get('admin.change_successful'));
 		return Redirect::route('homepage');
 	}
 
