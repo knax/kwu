@@ -63,7 +63,7 @@ class DataController extends BaseController {
 
 	public function showPrint($id) {
 		$data = Data::findOrFail($id);
-		$binary = base_path() . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf';
+		$binary = base_path() . '/app/bin/wkhtmltopdf';
 		$snappy = new Knp\Snappy\Pdf($binary);
 		$response = Response::make($snappy->getOutput(URL::route('data.print.raw', ['id' => $id])));
 		$response->header('Content-Type', 'application/pdf');
