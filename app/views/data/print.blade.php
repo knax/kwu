@@ -5,6 +5,7 @@
 	<title>Print</title>
 	<link rel="stylesheet" href="/css/normalize.css">
 	<link rel="stylesheet" href="/css/print.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<div id="print-container">
@@ -52,7 +53,11 @@
 				</tfoot>
 				<tbody>
 					<td>stamp</td>
-					<td>stamp</td>
+					<td>
+					@if($data->isApproved())
+					<img src="/images/stamp.jpg" />
+					@endif
+					</td>
 				</tbody>
 			</table>
 			<!-- /#signature -->

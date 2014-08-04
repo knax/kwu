@@ -3,7 +3,7 @@
 		<table class="table table-bordered table-hover {{ $class or '' }}" id="{{ $id or ''}}">
 			<thead>
 				@foreach ($table['header'] as $header)
-				<th>{{{ $header }}}</th>
+				<th class="width-{{ $header['width'] or 'md' }}">{{{ $header['name'] or $header }}}</th>
 				@endforeach
 			</thead>
 			<tbody>

@@ -8,7 +8,11 @@
 			<tbody>
 				<tr id="signature">
 					<td></td>
-					<td></td>
+					<td>
+					@if($data->isApproved())
+					<img src="/images/stamp.jpg" />
+					@endif
+					</td>
 				</tr>
 				<tr>
 					<td class="text-center">{{ $data->requester->full_name }}</td>

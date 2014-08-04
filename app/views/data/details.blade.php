@@ -20,11 +20,8 @@
 	<hr>
 	@include('data.details.signature', ['data' => $data])
 
-
 	<hr>
 	@include('data.details.print-button', ['id' => $data->id])
-
-	<hr>
 
 	@if (isset($approving))
 	<hr>

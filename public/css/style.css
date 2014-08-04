@@ -18,6 +18,21 @@ div#insert-button-wrapper {
 	margin-left: auto;
 }
 
+.width-xs {
+  width: 4%;
+}
+
+.width-lg {
+  width: 50%;
+}
+img {
+  width: 50%;
+  height: 100%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media print {
   body * {
     visibility: hidden;

@@ -1,1 +1,47 @@
-{"data":{"insert-number":323},"site-title":"SWO-MRF","table-header":{"user-list":["Username","Full Name","Admin"],"data-list":["Number","Requester","Is Approved"]},"subtype":{"SWO":{"fullname":"Service Work Order","header":["No","Serial Number","Description","Service Requested"]},"MRF":{"fullname":"Material Request Form","header":["No","Description","Qty","Unit","Remarks"]}}}
+{
+	"data": {
+		"insert-number": 323
+	},
+	"site-title": "SWO-MRF",
+	"table-header": {
+		"user-list": ["Username", "Full Name", "Admin"],
+		"data-list": ["Number", "Requester", "Is Approved"]
+	},
+	"subtype": {
+		"SWO": {
+			"fullname": "Service Work Order",
+			"header": [{
+				"name": "No",
+				"width": "xs"
+			}, {
+				"name": "Serial Number",
+				"width": "md"
+			}, {
+				"name": "Description",
+				"width": "lg"
+			}, {
+				"name": "Service Requested",
+				"width": "md"
+			}]
+		},
+		"MRF": {
+			"fullname": "Material Request Form",
+			"header": [{
+				"name": "No",
+				"width": "xs"
+			}, {
+				"name": "Description",
+				"width": "lg"
+			}, {
+				"name": "Qty",
+				"width": "md"
+			}, {
+				"name": "Unit",
+				"width": "md"
+			}, {
+				"name": "Remarks",
+				"width": "md"
+			}]
+		}
+	}
+}

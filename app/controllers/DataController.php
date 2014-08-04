@@ -80,7 +80,7 @@ class DataController extends BaseController {
 
 		$table[] = '<thead>';
 		foreach ($data->getAdditionalDataTableHeader() as $value) {
-			$table[] = '<th>' . $value . '</th>';
+			$table[] = '<th class="width-' . $value['width'] . '">' . $value['name'] . '</th>';
 		}
 		$table[] = '</thead>';
 
