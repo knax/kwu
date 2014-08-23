@@ -59,7 +59,10 @@ Route::group(['before' => 'authentication'], function()
 		{
 			Route::get('admin/super/user', ['uses' => 'UserController@showList', 'as' => 'admin.super.user']);
 			Route::get('admin/super/user/create', ['uses' => 'UserController@showCreateForm', 'as' => 'admin.super.user.create']);
+			Route::get('admin/super/user/{id}', ['uses' => 'UserController@showDetails', 'as' => 'admin.super.user.details'])->where('id', '[0-9]+');
+			Route::get('admin/super/user/{id}/delete', ['uses' => 'UserController@handleDelete', 'as' => 'admin.super.user.deleteAction'])->where('id', '[0-9]+');;
 			Route::post('admin/super/user/create', ['uses' => 'UserController@handleForm', 'as' => 'admin.super.user.createAction']);
+			Route::post('admin/super/user/{id}', ['uses' => 'UserController@handleEditForm', 'as' => 'admin.super.user.editAction'])->where('id', '[0-9]+');
 			Route::get('admin/super/insertnumber', ['uses' => 'SuperAdminController@showChangeInsertNumberForm', 'as' => 'admin.super.insertnumber']);
 			Route::post('admin/super/insertnumber', ['uses' => 'SuperAdminController@handleChangeInsertNumber', 'as' => 'admin.super.insertnumber.change']);
 		});

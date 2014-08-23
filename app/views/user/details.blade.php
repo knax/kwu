@@ -3,28 +3,28 @@
 @section('content')
 
 <div data-type="createuser" id="content">
-	<form action="{{ URL::route('admin.super.user.createAction') }}" method="POST" class="form-horizontal">
+	<form action="{{ URL::route('admin.super.user.editAction', ['id' => $user->id]) }}" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<h2>User Registration</h2>
+				<h2>Edit User</h2>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="username" class="col-sm-2 control-label">{{ Lang::get('authentication.username') }}</label>
+			<label for="username" class="col-sm-2 control-label">New {{ Lang::get('authentication.username') }}</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="username" name="username" placeholder="{{ Lang::get('authentication.username') }}">
+				<input type="text" class="form-control" id="username" name="username" value="{{ $user->username}}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="password" class="col-sm-2 control-label">{{ Lang::get('authentication.password') }}</label>
+			<label for="password" class="col-sm-2 control-label">New {{ Lang::get('authentication.password') }}</label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control" id="password" name="password" placeholder="{{ Lang::get('authentication.password') }}">
+				<input type="password" class="form-control" id="password" name="password">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="fullname" class="col-sm-2 control-label">{{ Lang::get('general.full_name') }}</label>
+			<label for="fullname" class="col-sm-2 control-label">New {{ Lang::get('general.full_name') }}</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="fullname" name="full_name" placeholder="{{ Lang::get('general.full_name') }}">
+				<input type="text" class="form-control" id="fullname" name="full_name" value="{{ $user->full_name}}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -44,12 +44,19 @@
 				</select>
 			</div>
 		</div>
-
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input id="submit" type="submit" class="btn btn-primary" value="Submit">
+				<a id="delete" href="{{ URL::route('admin.super.user.deleteAction', ['id' => $user->id]) }}" type="button" class="btn btn-danger">Delete</a>
 			</div>
 		</div>
 	</form>
 </div>
+<script>
+	$(function() {
+		@if($user->isAdmin())
+		$('select#admin-type').find('option[value={{ $user->admin->type }}]').attr('selected', true);
+		@endif
+	});
+</script>
 @stop

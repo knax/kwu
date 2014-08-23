@@ -39,6 +39,8 @@ class DataController extends BaseController {
 	{
 		$insertNumber = Setting::get('data.insert-number');
 
+		print_r(Data::getAdditionalDataTableHeaderByName($name));
+
 		return View::make('data.create', [
 			'insertNumber' => $insertNumber,
 			'tableHeader' => Data::getAdditionalDataTableHeaderByName($name),

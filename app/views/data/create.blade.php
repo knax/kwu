@@ -83,7 +83,7 @@
 				<table id="create-list" class="table table-bordered">
 					<thead>
 						@foreach ($tableHeader as $header)
-						<th>{{ $header }}</th>
+						<th>{{ $header['name'] }}</th>
 						@endforeach
 					</thead>
 					<tbody data-insert-id="1">
@@ -148,9 +148,9 @@
 					<form id="list-form" class="form-horizontal" role="form">
 						@foreach ($tableHeader as $header)
 						<div class="form-group">
-							<label for="list-{{ strtolower($header) }}" class="col-sm-2 control-label">{{ $header }}</label>
+							<label for="list-{{ strtolower($header['name']) }}" class="col-sm-2 control-label">{{ $header['name'] }}</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="list-{{ strtolower($header) }}">
+								<input type="text" class="form-control" id="list-{{ strtolower($header['name']) }}">
 							</div>
 						</div>
 						@endforeach
